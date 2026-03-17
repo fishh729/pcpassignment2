@@ -354,7 +354,7 @@ void loadPurchaseInfo(string merch_details[][3], double& total_credit, int& num_
 //    *It will be better to list out all merchandise when add merchandise
 //    *Can refer to the example shown in the doc file
 void addItem(string merch_details[][3], double& total_credit, int& num_merch) {
-
+	int choice, cont = 1;
 
 	do {
 		system("cls");
@@ -366,6 +366,18 @@ void addItem(string merch_details[][3], double& total_credit, int& num_merch) {
 		cout << "Choice: ";
 		cin >> choice;
 		system("cls");
+		switch(choice){
+			case 1:
+				cout << "Current Credit: RM " << credit << endl;
+				cout << "Credit to Add: RM " << endl;
+				cin >> credit;
+			case 2:
+			case 3:
+				cont = 0;
+				break;
+			default:
+				//error checking
+		}
 
 		
 	} while (cont == 1);
