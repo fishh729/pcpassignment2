@@ -308,16 +308,40 @@ void deleteFavList(P2, P5) {
 //       "currentUser" stores the username that successfully login and can be used to create the new text file 
 //    8) If the text file exists, read the records. E.g., "Sunny Ling Ling Ling PurInfo.txt" is available and 
 //       the details are read and load into the respective parameters
+int credit = 0;
+
 void loadPurchaseInfo(string merch_details[][3], double& total_credit, int& num_merch) {
+	string line;
+	int count = 0;
 	ifstream in_user_merch(currentUser +" PurInfo.txt");
 	if (in_user_merch.is_open()){
 		while (getline(in_user_merch, line)){
-			cout << line << "\n";
+			
+			if (count == 0){
+				total_credit = stod(line);
+			}
+			else{
+				switch (count % 3){
+					case 1:
+						merch_details[count/3][0];
+						break;
+					case 2:
+						merch_details[count/3][1];
+						break;
+					case 0:
+						merch_details[count/3][2];
+						break;
+				}
+			}
+			count++;
 		}
+		in_user_merch.close();
 	} else {
-		ofstream out_s
+		ofstream out_user_merch;
+		out_user_merch.open(currentUser +" PurInfo.txt");
+		out_user_merch << "0";
+		out_user_merch.close();
 	}
-
 }
 
 //19. Function addItem --> add credit or add merchandise and saved to "XXX PurInfo.txt"
@@ -329,7 +353,7 @@ void loadPurchaseInfo(string merch_details[][3], double& total_credit, int& num_
 //    *It will be better to display the credit value all the time on the screen when it is in add section
 //    *It will be better to list out all merchandise when add merchandise
 //    *Can refer to the example shown in the doc file
-void addItem(P3, P6, P7) {
+void addItem(string merch_details[][3], double& total_credit, int& num_merch) {
 
 
 	do {
